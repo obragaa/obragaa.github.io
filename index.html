@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="pt-BR" class="sem-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Felipe Braga Duarte — desenvolvedor full stack e IA</title>
+<meta name="description" content="Sistemas, automações e sites sob medida para empresas. Projetos: Atendo, BodyFlow, Widgetok, Palco e GiftCraft. Python, FastAPI, React, PostgreSQL e IA aplicada.">
+<meta name="author" content="Felipe Braga Duarte">
+<meta name="theme-color" content="#050a16">
+<link rel="canonical" href="https://obragaa.github.io/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://obragaa.github.io/">
+<meta property="og:title" content="Felipe Braga Duarte — desenvolvedor full stack e IA">
+<meta property="og:description" content="Sistemas, automações e sites sob medida para empresas. Atendo, BodyFlow, Widgetok, Palco e GiftCraft.">
+<meta property="og:image" content="https://obragaa.github.io/assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fontes/SpaceGrotesk-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fontes/Inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Felipe Braga Duarte",
+  "url": "https://obragaa.github.io/",
+  "image": "https://obragaa.github.io/assets/img/foto.webp",
+  "jobTitle": "Desenvolvedor full stack",
+  "email": "mailto:contato.felipebragaduarte@gmail.com",
+  "sameAs": [
+    "https://github.com/obragaa",
+    "https://www.linkedin.com/in/felipe-braga101/"
+  ],
+  "knowsAbout": ["Python", "FastAPI", "React", "PostgreSQL", "Docker", "Inteligência artificial aplicada"]
+}
+</script>
+</head>
+
+<body>
+<canvas id="cena" aria-hidden="true"></canvas>
+<div class="progresso" aria-hidden="true"></div>
+
+<header class="topo">
+  <a class="marca" href="#topo"><i aria-hidden="true"></i> Felipe Braga</a>
+  <nav class="menu" aria-label="Seções">
+    <a href="#projetos">Projetos</a>
+    <a href="#feito">Como é feito</a>
+    <a href="#trajetoria">Trajetória</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header>
+
+<main class="conteudo" id="topo">
+
+  <!-- ============== ENTRADA ============== -->
+  <section class="entrada limite" data-secao="topo">
+    <div class="entrada__grade">
+      <div>
+        <p class="rotulo">Desenvolvedor full stack · IA aplicada</p>
+        <h1>Felipe Braga<span>Duarte</span></h1>
+        <p class="sub">Sistemas, automações e sites sob medida para empresas — do banco de dados à tela, com o que precisa ser medido, medido.</p>
+        <ul class="dados">
+          <li>Na área desde 2020</li>
+          <li>Python · TypeScript · Java</li>
+          <li>IA aplicada a produto</li>
+          <li>São Paulo · remoto</li>
+        </ul>
+        <div class="acoes">
+          <a class="botao botao--cheio" href="#projetos">Ver os projetos</a>
+          <a class="botao botao--vazio" href="#contato">Falar comigo</a>
+        </div>
+        <p class="rolar"><b aria-hidden="true"></b> role para entrar</p>
+      </div>
+      <figure class="retrato">
+        <picture>
+          <source srcset="assets/img/foto.webp" type="image/webp" media="(min-width: 600px)">
+          <source srcset="assets/img/foto-sm.webp" type="image/webp">
+          <img src="assets/img/foto.jpg" alt="Felipe Braga Duarte" width="720" height="720" fetchpriority="high">
+        </picture>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============== PROJETOS ============== -->
+  <div id="projetos" data-secao="projetos">
+
+    <!-- 01 · Atendo -->
+    <section class="projeto" data-cor="#f5a524" style="--cor:#f5a524" aria-labelledby="p-atendo">
+      <div class="projeto__fixo">
+        <div class="projeto__grade">
+          <div class="ficha">
+            <p class="ficha__numero">01 / 05</p>
+            <h3 id="p-atendo">Atendo</h3>
+            <p class="ficha__etiqueta">atendimento</p>
+            <p>Agente que atende clientes por WhatsApp e pelo site da empresa usando os documentos dela. Marca horário, registra interessados e passa para um humano o que não deve responder sozinho. Cada resposta sai com o custo da conversa medido.</p>
+            <ul class="pilha">
+              <li>Python</li><li>FastAPI</li><li>PostgreSQL + pgvector</li><li>Redis</li><li>Docker</li><li>Claude API</li>
+            </ul>
+            <p class="ficha__links">
+              <a class="elo" href="https://github.com/obragaa/atendo" target="_blank" rel="noopener">código no GitHub ↗</a>
+            </p>
+          </div>
+
+          <div class="palco" aria-hidden="true">
+            <div class="conversa">
+              <div class="balao balao--cliente" style="--i:0">Quanto custa a limpeza?</div>
+              <div class="balao balao--bot" style="--i:1">R$ 250, em até 6 vezes no cartão.</div>
+              <div class="balao balao--cliente" style="--i:2">Tem horário terça de manhã?</div>
+              <div class="balao balao--bot" style="--i:3">Tenho 09:00, 09:30 e 11:00.</div>
+              <div class="balao balao--cliente" style="--i:4">Pode ser 09:30</div>
+              <div class="balao balao--bot" style="--i:5">Agendado. Até terça!</div>
+              <p class="recibo">documentos consultados · <b>US$ 0,00342</b> · 812 ms</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 · BodyFlow -->
+    <section class="projeto" data-cor="#22c55e" style="--cor:#22c55e" aria-labelledby="p-bodyflow">
+      <div class="projeto__fixo">
+        <div class="projeto__grade">
+          <div class="ficha">
+            <p class="ficha__numero">02 / 05</p>
+            <h3 id="p-bodyflow">BodyFlow</h3>
+            <p class="ficha__etiqueta">dieta e treino</p>
+            <p>Aplicativo que acompanha dieta e treino com IA: a pessoa descreve a refeição em texto ou foto, o app registra os macros, acompanha o treino e ajusta o plano ao longo das semanas.</p>
+            <ul class="pilha">
+              <li>React Native</li><li>Expo</li><li>Supabase</li><li>PostgreSQL</li><li>IA</li>
+            </ul>
+            <p class="ficha__links"><span class="elo elo--mudo">aplicativo em produção</span></p>
+          </div>
+
+          <div class="palco" aria-hidden="true">
+            <div class="macros">
+              <div class="macros__msg">“comi 2 ovos e um pão integral”</div>
+              <div class="aneis">
+                <div class="anel" style="--tom:#22c55e; --meta:.72">
+                  <svg viewBox="0 0 90 90"><circle class="trilho" cx="45" cy="45" r="40"/><circle class="arco" cx="45" cy="45" r="40"/></svg>
+                  <span>prot</span>
+                </div>
+                <div class="anel" style="--tom:#38bdf8; --meta:.55">
+                  <svg viewBox="0 0 90 90"><circle class="trilho" cx="45" cy="45" r="40"/><circle class="arco" cx="45" cy="45" r="40"/></svg>
+                  <span>carb</span>
+                </div>
+                <div class="anel" style="--tom:#f5a524; --meta:.38">
+                  <svg viewBox="0 0 90 90"><circle class="trilho" cx="45" cy="45" r="40"/><circle class="arco" cx="45" cy="45" r="40"/></svg>
+                  <span>gord</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · Widgetok -->
+    <section class="projeto" data-cor="#a855f7" style="--cor:#a855f7" aria-labelledby="p-widgetok">
+      <div class="projeto__fixo">
+        <div class="projeto__grade">
+          <div class="ficha">
+            <p class="ficha__numero">03 / 05</p>
+            <h3 id="p-widgetok">Widgetok</h3>
+            <p class="ficha__etiqueta">widgets para transmissão ao vivo</p>
+            <p>Programa que coloca widgets nos cantos da tela de quem transmite ao vivo: meta, contador, últimos apoiadores e alertas, atualizados em tempo real durante a transmissão.</p>
+            <ul class="pilha">
+              <li>TypeScript</li><li>React</li><li>WebSocket</li><li>Tempo real</li>
+            </ul>
+            <p class="ficha__links"><span class="elo elo--mudo">programa para desktop</span></p>
+          </div>
+
+          <div class="palco" aria-hidden="true">
+            <div class="tela916">
+              <div class="tela916__moldura">
+                <span class="wid wid--a" style="--i:0">meta 72%</span>
+                <span class="wid wid--b" style="--i:1">1.284 online</span>
+                <span class="wid wid--c" style="--i:2">último apoio</span>
+                <span class="wid wid--d" style="--i:3">ranking</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 · Palco -->
+    <section class="projeto" data-cor="#ec4899" style="--cor:#ec4899" aria-labelledby="p-palco">
+      <div class="projeto__fixo">
+        <div class="projeto__grade">
+          <div class="ficha">
+            <p class="ficha__numero">04 / 05</p>
+            <h3 id="p-palco">Palco</h3>
+            <p class="ficha__etiqueta">jogos sobre a transmissão</p>
+            <p>Conjunto de jogos que rodam por cima da transmissão ao vivo e reagem ao que o público faz na hora — com física, placar e rodadas que continuam entre uma transmissão e outra.</p>
+            <ul class="pilha">
+              <li>Node.js</li><li>Canvas</li><li>WebSocket</li><li>Física</li>
+            </ul>
+            <p class="ficha__links"><span class="elo elo--mudo">projeto próprio</span></p>
+          </div>
+
+          <div class="palco" aria-hidden="true">
+            <div class="fisica">
+              <div class="peca" style="--i:0; height:38%"></div>
+              <div class="peca" style="--i:1; height:58%"></div>
+              <div class="peca" style="--i:2; height:28%"></div>
+              <div class="peca" style="--i:3; height:70%"></div>
+              <div class="peca" style="--i:4; height:46%"></div>
+            </div>
+            <span class="piso"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · GiftCraft -->
+    <section class="projeto" data-cor="#38bdf8" style="--cor:#38bdf8" aria-labelledby="p-giftcraft">
+      <div class="projeto__fixo">
+        <div class="projeto__grade">
+          <div class="ficha">
+            <p class="ficha__numero">05 / 05</p>
+            <h3 id="p-giftcraft">GiftCraft</h3>
+            <p class="ficha__etiqueta">transmissão ao vivo ligada ao jogo</p>
+            <p>Ponte entre a transmissão ao vivo e o Minecraft: o presente que o espectador envia vira um evento dentro do jogo, no mesmo segundo — blocos, mobs, efeitos e regras configuráveis.</p>
+            <ul class="pilha">
+              <li>Node.js</li><li>Java</li><li>Fabric</li><li>WebSocket</li>
+            </ul>
+            <p class="ficha__links"><span class="elo elo--mudo">projeto próprio</span></p>
+          </div>
+
+          <div class="palco" aria-hidden="true">
+            <div class="voxel">
+              <div class="presente">🎁</div>
+              <div class="cubos">
+                <span class="cubo"></span><span class="cubo"></span><span class="cubo"></span>
+                <span class="cubo"></span><span class="cubo"></span><span class="cubo"></span>
+                <span class="cubo"></span><span class="cubo"></span><span class="cubo"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============== COMO É FEITO ============== -->
+  <section class="bloco limite" id="feito" data-secao="feito">
+    <div class="bloco__cabeca revela">
+      <p class="rotulo">Como é feito</p>
+      <h2>As ferramentas que uso todo dia</h2>
+      <p class="sub">Projeto que vai para produção leva teste automatizado, container e integração contínua — não é detalhe, é o que faz a entrega aguentar o uso real.</p>
+    </div>
+
+    <div class="stack">
+      <div class="stack__grupo revela">
+        <h3>Linguagens</h3>
+        <ul><li>Python</li><li>TypeScript</li><li>JavaScript</li><li>Java</li><li>SQL</li><li>C++</li></ul>
+      </div>
+      <div class="stack__grupo revela">
+        <h3>Back-end e dados</h3>
+        <ul><li>FastAPI</li><li>Django</li><li>Node.js</li><li>PostgreSQL</li><li>Redis</li><li>Supabase</li><li>APIs REST</li></ul>
+      </div>
+      <div class="stack__grupo revela">
+        <h3>Front-end</h3>
+        <ul><li>React</li><li>React Native</li><li>Expo</li><li>HTML</li><li>CSS</li><li>Canvas</li></ul>
+      </div>
+      <div class="stack__grupo revela">
+        <h3>IA aplicada</h3>
+        <ul><li>Claude API</li><li>Busca vetorial (RAG)</li><li>Agentes com ferramentas</li><li>Avaliação automatizada</li><li>Controle de custo</li></ul>
+      </div>
+      <div class="stack__grupo revela">
+        <h3>Infraestrutura</h3>
+        <ul><li>Docker</li><li>GitHub Actions</li><li>AWS</li><li>Linux</li><li>Git</li></ul>
+      </div>
+      <div class="stack__grupo revela">
+        <h3>Qualidade</h3>
+        <ul><li>Testes automatizados</li><li>Revisão de segurança</li><li>Observabilidade</li><li>Documentação</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== TRAJETÓRIA ============== -->
+  <section class="bloco limite" id="trajetoria" data-secao="trajetoria">
+    <div class="bloco__cabeca revela">
+      <p class="rotulo">Trajetória</p>
+      <h2>Do primeiro código ao sistema em produção</h2>
+    </div>
+
+    <div class="linha">
+      <div class="marco revela">
+        <b>2019</b>
+        <span>Primeiras linhas de código, por conta própria.</span>
+      </div>
+      <div class="marco revela">
+        <b>2020</b>
+        <span>Começo na área, ainda no curso técnico: primeiros sistemas internos e o primeiro estágio como desenvolvedor full stack.</span>
+      </div>
+      <div class="marco revela">
+        <b>2021 — 2024</b>
+        <span>Sistemas internos, automações, integrações entre plataformas e projetos de IoT e Indústria 4.0; graduação em Engenharia de Software.</span>
+      </div>
+      <div class="marco revela">
+        <b>Hoje</b>
+        <span>Sistemas sob medida para empresas e produtos próprios, com IA aplicada ao que o produto realmente precisa.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CONTATO ============== -->
+  <section class="bloco limite contato" id="contato" data-secao="contato">
+    <div class="revela">
+      <p class="rotulo">Contato</p>
+      <h2>Tem um sistema para construir?</h2>
+      <p class="sub" style="margin-inline:auto">Me conte o que precisa resolver. Respondo com o que dá para fazer, em quanto tempo e por onde começar.</p>
+
+      <p>
+        <a class="email" href="mailto:contato.felipebragaduarte@gmail.com">
+          contato.felipebragaduarte@gmail.com
+          <button class="copiar" type="button" data-copiar="contato.felipebragaduarte@gmail.com">copiar</button>
+        </a>
+      </p>
+
+      <div class="redes">
+        <a class="botao botao--vazio" href="https://www.linkedin.com/in/felipe-braga101/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="botao botao--vazio" href="https://github.com/obragaa" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+
+    <footer class="rodape">
+      <p>Felipe Braga Duarte · São Paulo · feito à mão, sem framework, hospedado no GitHub Pages</p>
+    </footer>
+  </section>
+
+</main>
+
+<script type="module" src="assets/js/site.js"></script>
+</body>
+</html>
