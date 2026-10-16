@@ -1,17 +1,19 @@
 # obragaa.github.io
 
-Site pessoal de **Felipe Braga Duarte** — desenvolvedor full stack e IA aplicada.
+Site pessoal de **Felipe Braga Duarte** — desenvolvedor full stack e de IA aplicada.
 
 🔗 **https://obragaa.github.io**
 
-Página única com rolagem interativa: a cena de fundo avança em profundidade
-conforme o visitante rola, e cada projeto é uma parada onde a animação acontece
-no ritmo da rolagem.
+Página única, escura. Na entrada, um sensor ultrassônico HC-SR04 em escala de
+protagonista mede a distância até o seu cursor — como no teste de 2021 com Arduino
+que está no GitHub — cercado por janelas de sistema, balões de chat, engrenagens e
+LEDs com física própria: as peças acendem com a proximidade, fogem do mouse e são
+lançadas para fora da tela pela rolagem. A trajetória é um sinal de osciloscópio
+que fica mais rico a cada marco.
 
 ## Como rodar localmente
 
-Não tem build, nem dependência, nem servidor de aplicação — é HTML, CSS e
-JavaScript puro. Basta servir a pasta:
+Não tem build nem servidor de aplicação. Basta servir a pasta:
 
 ```bash
 python -m http.server 8099
@@ -23,34 +25,37 @@ python -m http.server 8099
 ## Estrutura
 
 ```
-index.html              a página inteira
-assets/css/site.css     estilo, paleta e as animações dirigidas por --p
-assets/js/cena.js       cena de fundo (canvas 2D, perspectiva feita à mão)
-assets/js/site.js       traduz a rolagem em progresso (0→1) para o CSS
-assets/fontes/          Space Grotesk e Inter auto-hospedadas
-assets/img/             foto, favicon e imagem de compartilhamento
-PLANO.md                decisões de direção, estrutura e técnica
+index.html               a página inteira (com CSP por <meta>)
+assets/css/site.css      tokens, tipografia e todas as seções
+assets/js/main.js        carregamento, rolagem suave, menu, painéis e caso dos projetos
+assets/js/heroi3d.js     cena do topo: peças, física própria e o "sensor"
+assets/js/mundo3d.js     sinal de osciloscópio da trajetória (shader próprio)
+assets/js/demos.js       demonstrações vivas dos projetos (DOM + canvas 2D, sem biblioteca)
+assets/vendor/           three.js 0.186.1 enxuto (gerado por ferramentas/) e Lenis 1.3.27 (MIT)
+assets/fontes/           Archivo variável (OFL), subconjuntos latino e latino-estendido
+assets/img/              foto, imagens dos projetos, imagem de reserva e de compartilhamento
+PLANO.md                 decisões de direção, conteúdo e segurança
 ```
 
-## Como funciona a rolagem
+## Como a cena do topo funciona
 
-O JavaScript não anima nada: ele só calcula, a cada quadro, o progresso de cada
-seção (um número de 0 a 1) e escreve esse número numa custom property `--p`.
-Todo o movimento é CSS reagindo a esse número — o que mantém a página leve e
-fácil de ajustar.
-
-A cena de fundo é um canvas 2D com projeção de perspectiva própria: pontos num
-volume 3D projetados por `foco / z`, com a câmera avançando conforme a rolagem.
-Nenhuma biblioteca.
+- Cada peça é modelada por código (sem modelo baixado) e é um corpo rígido feito de
+  uma ou duas esferas. A física roda em passo fixo de 1/60 s.
+- Uma mola leva cada peça de volta à sua "casa" na composição; as casas são
+  sorteadas fora das áreas de texto, medidas no próprio layout.
+- O mouse é um cilindro invisível ao longo do raio da câmera: empurra as peças e
+  acende o que está perto. No toque, cada toque é um pulso.
+- Sem interação por ~6 s, a cena assenta e para de desenhar.
 
 ## Acessibilidade e desempenho
 
-- `prefers-reduced-motion` desliga a cena e o sticky, mostrando todo o conteúdo
-  de uma vez.
-- Sem JavaScript, o conteúdo continua legível.
-- Fontes auto-hospedadas (sem chamada a terceiros), imagens em WebP.
+- `prefers-reduced-motion`: cena parada com algumas luzes acesas; a trajetória vira
+  uma lista.
+- Sem JavaScript, sem WebGL ou com economia de dados: imagem de reserva no lugar da
+  cena, todo o conteúdo visível.
+- Texto e foco com contraste AA no fundo escuro; nome como `<h1>` de verdade.
+- Tela de carregamento com teto de 2,6 s; a cena 3D pode chegar depois.
 
 ## Publicação
 
-GitHub Pages, branch `main`, pasta raiz. Repositório com o nome exato da conta
-(`obragaa.github.io`), o que dá o endereço raiz, sem subpasta.
+GitHub Pages, branch `main`, pasta raiz.

@@ -1,26 +1,53 @@
 <!doctype html>
-<html lang="pt-BR" class="sem-js">
+<html lang="pt-BR">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-jPZo0MnFf35QugYATzPZ+G3WbSh0SW2hcnO2H0GtXiM=' 'sha256-atSRdoZNqR8ykHgjByQwbHxBscFxoIms6wDfd+aDfRA='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; worker-src 'self' blob:">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Felipe Braga Duarte — desenvolvedor full stack e IA</title>
-<meta name="description" content="Sistemas, automações e sites sob medida para empresas. Projetos: Atendo, BodyFlow, Widgetok, Palco e GiftCraft. Python, FastAPI, React, PostgreSQL e IA aplicada.">
+<meta name="description" content="Sistemas, automações e sites sob medida para empresas. Projetos: Atendo, BodyFlow, Atlas, Widgetok, Palco e GiftCraft. Python, TypeScript, PostgreSQL, IA aplicada e hardware com Arduino.">
 <meta name="author" content="Felipe Braga Duarte">
 <meta name="theme-color" content="#050a16">
+<meta name="color-scheme" content="dark">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://obragaa.github.io/">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:url" content="https://obragaa.github.io/">
 <meta property="og:title" content="Felipe Braga Duarte — desenvolvedor full stack e IA">
-<meta property="og:description" content="Sistemas, automações e sites sob medida para empresas. Atendo, BodyFlow, Widgetok, Palco e GiftCraft.">
+<meta property="og:description" content="Sistemas, automações e sites sob medida para empresas. Atendo, BodyFlow, Atlas, Widgetok, Palco e GiftCraft.">
 <meta property="og:image" content="https://obragaa.github.io/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="assets/fontes/SpaceGrotesk-700.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fontes/Inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fontes/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
+
+<script>
+  /* Marca que há JavaScript. Se o script principal não assumir em 6 s, a página
+     volta ao modo sem animação, com todo o conteúdo visível. A entrada é
+     idempotente: se o resgate já derrubou a cortina, o main.js não a recria. */
+  document.documentElement.classList.add('js');
+  setTimeout(function () {
+    if (!window.__siteOk) {
+      window.__resgatou = true;
+      document.documentElement.classList.remove('js');
+    }
+  }, 6000);
+</script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "./assets/vendor/three.slim.min.js",
+    "three/addons/": "./assets/vendor/addons/"
+  }
+}
+</script>
+<link rel="modulepreload" href="assets/vendor/lenis.mjs">
+<script type="module" src="assets/js/main.js"></script>
 
 <script type="application/ld+json">
 {
@@ -35,307 +62,478 @@
     "https://github.com/obragaa",
     "https://www.linkedin.com/in/felipe-braga101/"
   ],
-  "knowsAbout": ["Python", "FastAPI", "React", "PostgreSQL", "Docker", "Inteligência artificial aplicada"]
+  "knowsAbout": ["Python", "TypeScript", "FastAPI", "NestJS", "Next.js", "PostgreSQL", "Docker", "Inteligência artificial aplicada", "Arduino"]
 }
 </script>
 </head>
 
 <body>
-<canvas id="cena" aria-hidden="true"></canvas>
-<div class="progresso" aria-hidden="true"></div>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
-<header class="topo">
-  <a class="marca" href="#topo"><i aria-hidden="true"></i> Felipe Braga</a>
-  <nav class="menu" aria-label="Seções">
-    <a href="#projetos">Projetos</a>
-    <a href="#feito">Como é feito</a>
-    <a href="#trajetoria">Trajetória</a>
-    <a href="#contato">Contato</a>
-  </nav>
+<!-- Cortina de carregamento: a oferta já está legível no primeiro quadro -->
+<div class="pre" aria-hidden="true">
+  <p class="pre__marca">felipe braga<span>_</span></p>
+  <div class="pre__oferta">
+    <p class="pre__titulo">Sistemas, automações e sites sob medida para empresas.</p>
+    <p class="pre__prova">Desenvolvedor full stack e de IA aplicada — na área desde 2020.</p>
+  </div>
+  <p class="pre__num"><span>carregando a cena</span><b>0%</b></p>
+</div>
+
+<div class="cursor" aria-hidden="true"><span>Abrir</span></div>
+
+<header>
+  <a class="marca" href="#topo" aria-label="Felipe Braga, voltar ao início">Felipe Braga</a>
+  <div class="acoes">
+    <a class="pilula pilula--clara acoes__falar" href="#contato">
+      <span class="rola"><span data-t="Falar comigo">Falar comigo</span></span><i class="ponto"></i>
+    </a>
+    <button class="pilula pilula--vidro acoes__menu" type="button" aria-expanded="false" aria-controls="menu">
+      <span class="rola"><span data-t="Menu">Menu</span></span><i class="pontos"><b></b><b></b></i>
+    </button>
+  </div>
 </header>
 
-<main class="conteudo" id="topo">
+<nav class="menu" id="menu" aria-label="Menu" hidden>
+  <div class="menu__fundo" data-fechar-menu></div>
+  <div class="menu__painel">
+    <ul class="menu__lista">
+      <li><a href="#topo"><span>Início</span><i class="seta"></i></a></li>
+      <li><a href="#projetos"><span>Projetos</span><i class="seta"></i></a></li>
+      <li><a href="#como-trabalho"><span>Como trabalho</span><i class="seta"></i></a></li>
+      <li><a href="#trajetoria"><span>Trajetória</span><i class="seta"></i></a></li>
+      <li><a href="#contato"><span>Contato</span><i class="seta"></i></a></li>
+      <li><a href="#arquivo"><span>Arquivo</span><i class="seta"></i></a></li>
+    </ul>
+    <div class="menu__rodape">
+      <a href="mailto:contato.felipebragaduarte@gmail.com?subject=Or%C3%A7amento%20de%20projeto">E-mail</a>
+      <a href="https://www.linkedin.com/in/felipe-braga101/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/obragaa" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
 
-  <!-- ============== ENTRADA ============== -->
-  <section class="entrada limite" data-secao="topo">
-    <div class="entrada__grade">
-      <div>
-        <p class="rotulo">Desenvolvedor full stack · IA aplicada</p>
-        <h1>Felipe Braga<span>Duarte</span></h1>
-        <p class="sub">Sistemas, automações e sites sob medida para empresas.</p>
-        <ul class="dados">
-          <li>Na área desde 2020</li>
-          <li>Python · TypeScript · Java</li>
-          <li>IA aplicada a produto</li>
-          <li>Trabalho remoto</li>
-        </ul>
-        <div class="acoes">
-          <a class="botao botao--cheio" href="#projetos">Ver os projetos</a>
-          <a class="botao botao--vazio" href="#contato">Falar comigo</a>
-        </div>
-        <p class="rolar"><b aria-hidden="true"></b> role para entrar</p>
+<main id="conteudo">
+
+  <!-- ================= TOPO ================= -->
+  <section class="heroi" id="topo">
+    <div class="heroi__cena" aria-hidden="true"></div>
+    <p class="heroi__nome" aria-hidden="true"><span>Felipe</span> <span>Braga</span></p>
+
+    <div class="heroi__base" data-zona-livre>
+      <h1 class="heroi__oferta">Sistemas, automações e sites sob medida para empresas.</h1>
+      <p class="heroi__prova">Felipe Braga Duarte — desenvolvedor full stack e de IA aplicada, na área desde 2020.</p>
+      <div class="heroi__acoes">
+        <a class="pilula pilula--clara" href="#contato"><span class="rola"><span data-t="Falar comigo">Falar comigo</span></span><i class="ponto"></i></a>
+        <a class="pilula pilula--vidro" href="#projetos"><span class="rola"><span data-t="Ver projetos">Ver projetos</span></span></a>
       </div>
+    </div>
+
+    <p class="heroi__dica" data-zona-livre>
+      <i class="led" aria-hidden="true"></i>
+      <span>
+        <span class="dica-mouse">Aproxime o cursor — o sensor mede.</span>
+        <span class="dica-toque">Toque — o sensor mede.</span>
+        <a href="#hardware">É um HC-SR04 de verdade, do meu teste de 2021</a>
+      </span>
+    </p>
+  </section>
+
+  <!-- ================= SOBRE ================= -->
+  <section class="sobre" id="sobre" aria-labelledby="sobre-titulo">
+    <h2 class="sobre__frase" id="sobre-titulo" data-revela="palavras">Transformo processos que travam uma empresa em software que funciona.</h2>
+
+    <div class="sobre__grade">
       <figure class="retrato">
         <picture>
           <source srcset="assets/img/foto.webp" type="image/webp" media="(min-width: 600px)">
           <source srcset="assets/img/foto-sm.webp" type="image/webp">
-          <img src="assets/img/foto.jpg" alt="Felipe Braga Duarte" width="720" height="720" fetchpriority="high">
+          <img src="assets/img/foto.jpg" alt="Felipe Braga Duarte" width="720" height="720" loading="lazy" decoding="async">
         </picture>
       </figure>
-    </div>
-  </section>
 
-  <!-- ============== PROJETOS ============== -->
-  <div id="projetos" data-secao="projetos">
-
-    <!-- 01 · Atendo -->
-    <section class="projeto" data-cor="#f5a524" style="--cor:#f5a524" aria-labelledby="p-atendo">
-      <div class="projeto__fixo">
-        <div class="projeto__grade">
-          <div class="ficha">
-            <p class="ficha__numero">01 / 05</p>
-            <h3 id="p-atendo">Atendo</h3>
-            <p class="ficha__etiqueta">atendimento</p>
-            <p>Agente que atende clientes por WhatsApp e pelo site da empresa usando os documentos dela. Marca horário, registra interessados e passa para um humano o que não deve responder sozinho. Cada resposta sai com o custo da conversa medido.</p>
-            <ul class="pilha">
-              <li>Python</li><li>FastAPI</li><li>PostgreSQL + pgvector</li><li>Redis</li><li>Docker</li><li>Claude API</li>
-            </ul>
-            <p class="ficha__links">
-              <a class="elo" href="https://github.com/obragaa/atendo" target="_blank" rel="noopener">código no GitHub ↗</a>
-            </p>
-          </div>
-
-          <div class="palco" aria-hidden="true">
-            <div class="conversa">
-              <div class="balao balao--cliente" style="--i:0">Quanto custa a limpeza?</div>
-              <div class="balao balao--bot" style="--i:1">R$ 250, em até 6 vezes no cartão.</div>
-              <div class="balao balao--cliente" style="--i:2">Tem horário terça de manhã?</div>
-              <div class="balao balao--bot" style="--i:3">Tenho 09:00, 09:30 e 11:00.</div>
-              <div class="balao balao--cliente" style="--i:4">Pode ser 09:30</div>
-              <div class="balao balao--bot" style="--i:5">Agendado. Até terça!</div>
-              <p class="recibo">documentos consultados · <b>US$ 0,00342</b> · 812 ms</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 02 · BodyFlow -->
-    <section class="projeto" data-cor="#22c55e" style="--cor:#22c55e" aria-labelledby="p-bodyflow">
-      <div class="projeto__fixo">
-        <div class="projeto__grade">
-          <div class="ficha">
-            <p class="ficha__numero">02 / 05</p>
-            <h3 id="p-bodyflow">BodyFlow</h3>
-            <p class="ficha__etiqueta">dieta e treino</p>
-            <p>Aplicativo que acompanha dieta e treino com IA: a pessoa descreve a refeição em texto ou foto, o app registra os macros, acompanha o treino e ajusta a dieta.</p>
-            <ul class="pilha">
-              <li>React Native</li><li>Expo</li><li>Supabase</li><li>PostgreSQL</li><li>IA</li>
-            </ul>
-            <p class="ficha__links"><span class="elo elo--mudo">aplicativo em produção</span></p>
-          </div>
-
-          <div class="palco" aria-hidden="true">
-            <div class="macros">
-              <div class="macros__msg">“comi 2 ovos e um pão integral”</div>
-              <div class="aneis">
-                <div class="anel" style="--tom:#22c55e; --meta:.72">
-                  <svg viewBox="0 0 90 90"><circle class="trilho" cx="45" cy="45" r="40"/><circle class="arco" cx="45" cy="45" r="40"/></svg>
-                  <span>prot</span>
-                </div>
-                <div class="anel" style="--tom:#38bdf8; --meta:.55">
-                  <svg viewBox="0 0 90 90"><circle class="trilho" cx="45" cy="45" r="40"/><circle class="arco" cx="45" cy="45" r="40"/></svg>
-                  <span>carb</span>
-                </div>
-                <div class="anel" style="--tom:#f5a524; --meta:.38">
-                  <svg viewBox="0 0 90 90"><circle class="trilho" cx="45" cy="45" r="40"/><circle class="arco" cx="45" cy="45" r="40"/></svg>
-                  <span>gord</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 · Widgetok -->
-    <section class="projeto" data-cor="#a855f7" style="--cor:#a855f7" aria-labelledby="p-widgetok">
-      <div class="projeto__fixo">
-        <div class="projeto__grade">
-          <div class="ficha">
-            <p class="ficha__numero">03 / 05</p>
-            <h3 id="p-widgetok">Widgetok</h3>
-            <p class="ficha__etiqueta">widgets para transmissão ao vivo</p>
-            <p>Widgets de overlay para transmissão ao vivo — alerta, ranking, meta, enquete e batalha — rodando na máquina de quem transmite, sem conta e sem nuvem.</p>
-            <ul class="pilha">
-              <li>Node.js</li><li>Electron</li><li>Socket.IO</li><li>Express</li>
-            </ul>
-            <p class="ficha__links"><span class="elo elo--mudo">programa para desktop</span></p>
-          </div>
-
-          <div class="palco" aria-hidden="true">
-            <div class="tela916">
-              <div class="tela916__moldura">
-                <span class="wid wid--a" style="--i:0">meta 72%</span>
-                <span class="wid wid--b" style="--i:1">1.284 online</span>
-                <span class="wid wid--c" style="--i:2">último apoio</span>
-                <span class="wid wid--d" style="--i:3">ranking</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 04 · Palco -->
-    <section class="projeto" data-cor="#ec4899" style="--cor:#ec4899" aria-labelledby="p-palco">
-      <div class="projeto__fixo">
-        <div class="projeto__grade">
-          <div class="ficha">
-            <p class="ficha__numero">04 / 05</p>
-            <h3 id="p-palco">Palco</h3>
-            <p class="ficha__etiqueta">jogos sobre a transmissão</p>
-            <p>Jogos que rodam por cima da transmissão ao vivo: o presente do público vira personagem e disputa na tela, com a foto de quem mandou.</p>
-            <ul class="pilha">
-              <li>Node.js</li><li>Electron</li><li>Socket.IO</li><li>Canvas</li>
-            </ul>
-            <p class="ficha__links"><span class="elo elo--mudo">projeto próprio</span></p>
-          </div>
-
-          <div class="palco" aria-hidden="true">
-            <div class="fisica">
-              <div class="peca" style="--i:0; height:38%"></div>
-              <div class="peca" style="--i:1; height:58%"></div>
-              <div class="peca" style="--i:2; height:28%"></div>
-              <div class="peca" style="--i:3; height:70%"></div>
-              <div class="peca" style="--i:4; height:46%"></div>
-            </div>
-            <span class="piso"></span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 05 · GiftCraft -->
-    <section class="projeto" data-cor="#38bdf8" style="--cor:#38bdf8" aria-labelledby="p-giftcraft">
-      <div class="projeto__fixo">
-        <div class="projeto__grade">
-          <div class="ficha">
-            <p class="ficha__numero">05 / 05</p>
-            <h3 id="p-giftcraft">GiftCraft</h3>
-            <p class="ficha__etiqueta">transmissão ao vivo ligada ao jogo</p>
-            <p>Ponte entre a transmissão ao vivo e o Minecraft: o presente que o espectador envia vira mob, efeito ou evento dentro do servidor.</p>
-            <ul class="pilha">
-              <li>Node.js</li><li>Socket.IO</li><li>RCON</li><li>Express</li>
-            </ul>
-            <p class="ficha__links"><span class="elo elo--mudo">projeto próprio</span></p>
-          </div>
-
-          <div class="palco" aria-hidden="true">
-            <div class="voxel">
-              <div class="presente">🎁</div>
-              <div class="cubos">
-                <span class="cubo"></span><span class="cubo"></span><span class="cubo"></span>
-                <span class="cubo"></span><span class="cubo"></span><span class="cubo"></span>
-                <span class="cubo"></span><span class="cubo"></span><span class="cubo"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- ============== COMO É FEITO ============== -->
-  <section class="bloco limite" id="feito" data-secao="feito">
-    <div class="bloco__cabeca revela">
-      <p class="rotulo">Como é feito</p>
-      <h2>Ferramentas</h2>
-      <p class="sub">O que uso nos projetos acima e no trabalho para empresas.</p>
-    </div>
-
-    <div class="stack">
-      <div class="stack__grupo revela">
-        <h3>Linguagens</h3>
-        <ul><li>Python</li><li>TypeScript</li><li>JavaScript</li><li>Java</li><li>SQL</li><li>C++</li></ul>
-      </div>
-      <div class="stack__grupo revela">
-        <h3>Back-end e dados</h3>
-        <ul><li>FastAPI</li><li>Django</li><li>Node.js</li><li>PostgreSQL</li><li>Redis</li><li>Supabase</li><li>APIs REST</li></ul>
-      </div>
-      <div class="stack__grupo revela">
-        <h3>Front-end</h3>
-        <ul><li>React</li><li>React Native</li><li>Expo</li><li>HTML</li><li>CSS</li><li>Canvas</li></ul>
-      </div>
-      <div class="stack__grupo revela">
-        <h3>IA aplicada</h3>
-        <ul><li>Claude API</li><li>Busca vetorial (RAG)</li><li>Agentes com ferramentas</li><li>Avaliação automatizada</li><li>Controle de custo</li></ul>
-      </div>
-      <div class="stack__grupo revela">
-        <h3>Infraestrutura</h3>
-        <ul><li>Docker</li><li>GitHub Actions</li><li>AWS</li><li>Linux</li><li>Git</li></ul>
-      </div>
-      <div class="stack__grupo revela">
-        <h3>Qualidade</h3>
-        <ul><li>Testes automatizados</li><li>Revisão de segurança</li><li>Observabilidade</li><li>Documentação</li></ul>
+      <div class="sobre__texto">
+        <p class="sobre__lead">Banco de dados, API, painel e aplicativo — faço o sistema inteiro. E coloco IA onde ela realmente ajuda: atender cliente, consultar documentos, automatizar rotina.</p>
+        <p>Trabalho remoto, com Python, TypeScript e Java.</p>
+        <p>Antes disso, trabalhei durante muitos anos na indústria, com software para chão de fábrica: hardware, sensores e o sistema que transforma dado de máquina em indicador de produção. Pela empresa, participei de projetos de inovação com o governo, dentro do Rota 2030.</p>
       </div>
     </div>
   </section>
 
-  <!-- ============== TRAJETÓRIA ============== -->
-  <section class="bloco limite" id="trajetoria" data-secao="trajetoria">
-    <div class="bloco__cabeca revela">
-      <p class="rotulo">Trajetória</p>
-      <h2>De 2019 até hoje</h2>
+  <!-- ================= PROJETOS ================= -->
+  <section class="projetos" id="projetos" aria-labelledby="projetos-titulo">
+    <div class="cabeca">
+      <h2 class="titulo" id="projetos-titulo">Projetos</h2>
+      <p class="cabeca__nota">Código aberto, produtos próprios e um aplicativo em produção para cliente.</p>
     </div>
 
-    <div class="linha">
-      <div class="marco revela">
-        <b>2019</b>
-        <span>Primeiras linhas de código.</span>
-      </div>
-      <div class="marco revela">
-        <b>2020</b>
-        <span>Começo na área, ainda no curso técnico.</span>
-      </div>
-      <div class="marco revela">
-        <b>2021 — 2024</b>
-        <span>Sistemas internos, automações, integrações entre plataformas e projetos de IoT e Indústria 4.0.</span>
-      </div>
-      <div class="marco revela">
-        <b>Hoje</b>
-        <span>Sistemas sob medida para empresas e produtos próprios, com IA aplicada.</span>
-      </div>
-    </div>
-  </section>
+    <div class="pilha">
 
-  <!-- ============== CONTATO ============== -->
-  <section class="bloco limite contato" id="contato" data-secao="contato">
-    <div class="revela">
-      <p class="rotulo">Contato</p>
-      <h2>Contato</h2>
-      <p class="sub" style="margin-inline:auto">Para projetos e propostas, o caminho é o e-mail.</p>
-
-      <p>
-        <a class="email" href="mailto:contato.felipebragaduarte@gmail.com">
-          contato.felipebragaduarte@gmail.com
-          <button class="copiar" type="button" data-copiar="contato.felipebragaduarte@gmail.com">copiar</button>
+      <article class="proj" data-slug="atendo" style="--cor: #34d399; --i: 0">
+        <a class="proj__alvo" href="#projeto/atendo" data-projeto aria-label="Atendo — abrir o projeto">
+          <div class="proj__texto">
+            <p class="proj__topo"><span class="proj__num">01</span><span class="proj__status">Código aberto</span></p>
+            <p class="proj__dor"><span>O problema</span>Cliente pergunta fora do horário e a resposta demora.</p>
+            <h3 class="proj__nome">Atendo</h3>
+            <p class="proj__desc">Agente que atende clientes por WhatsApp e pelo site, com o custo de cada conversa medido.</p>
+            <ul class="proj__stack"><li>Python</li><li>FastAPI</li><li>pgvector</li><li>Claude API</li></ul>
+            <span class="proj__abrir">Abrir o projeto<i class="seta seta--direita"></i></span>
+          </div>
+          <div class="proj__palco" data-demo="atendo"><img class="proj__reserva" src="assets/img/projetos/atendo.webp" alt="" width="1080" height="864" loading="lazy" decoding="async"></div>
         </a>
-      </p>
+        <div class="proj__mais" hidden>
+          <p class="mais__problema">Cliente pergunta fora do horário e a resposta demora.</p>
+          <p class="mais__solucao">Construí um agente que responde por WhatsApp e pelo site usando os documentos da empresa, marca horário, registra interessados e passa para um humano o que não deve responder sozinho. Cada resposta sai com o custo da conversa medido — auditável, não estimado.</p>
+          <ol class="mais__passos"><li>Responde com base nos documentos da própria empresa, buscados no PostgreSQL com pgvector.</li><li>Marca horário e registra quem demonstrou interesse.</li><li>Passa para um humano o que não deve responder sozinho.</li><li>Mede o custo de cada conversa, resposta por resposta.</li></ol>
+          <ul class="mais__stack"><li>Python</li><li>FastAPI</li><li>PostgreSQL + pgvector</li><li>Redis</li><li>Docker</li><li>Claude API</li></ul>
+          <p class="mais__status">Código aberto no GitHub</p>
+          <a class="mais__link" href="https://github.com/obragaa/atendo" target="_blank" rel="noopener">Ver o código no GitHub</a>
+        </div>
+      </article>
 
-      <div class="redes">
-        <a class="botao botao--vazio" href="https://www.linkedin.com/in/felipe-braga101/" target="_blank" rel="noopener">LinkedIn ↗</a>
-        <a class="botao botao--vazio" href="https://github.com/obragaa" target="_blank" rel="noopener">GitHub ↗</a>
+      <article class="proj" data-slug="bodyflow" style="--cor: #ff8a3d; --i: 1">
+        <a class="proj__alvo" href="#projeto/bodyflow" data-projeto aria-label="BodyFlow — abrir o projeto">
+          <div class="proj__texto">
+            <p class="proj__topo"><span class="proj__num">02</span><span class="proj__status">Em produção</span></p>
+            <p class="proj__dor"><span>O problema</span>Acompanhar dieta e treino dá trabalho, e a pessoa desiste.</p>
+            <h3 class="proj__nome">BodyFlow</h3>
+            <p class="proj__desc">Aplicativo de dieta e treino com IA, feito para cliente.</p>
+            <ul class="proj__stack"><li>React Native</li><li>Expo</li><li>Supabase</li><li>IA</li></ul>
+            <span class="proj__abrir">Abrir o projeto<i class="seta seta--direita"></i></span>
+          </div>
+          <div class="proj__palco" data-demo="bodyflow"><div class="proj__reserva proj__reserva--tipo"><p>dieta e treino<br>com IA</p></div></div>
+        </a>
+        <div class="proj__mais" hidden>
+          <p class="mais__problema">Acompanhar dieta e treino dá trabalho, e a pessoa desiste.</p>
+          <p class="mais__solucao">Construí um aplicativo em que ela descreve a refeição em texto ou foto; a IA registra os macros, acompanha o treino e ajusta a dieta.</p>
+          <ol class="mais__passos"><li>A pessoa descreve a refeição em texto ou manda uma foto.</li><li>A IA identifica os alimentos e registra os macros.</li><li>O treino é acompanhado no mesmo aplicativo.</li><li>A dieta é ajustada a partir do que foi registrado.</li></ol>
+          <ul class="mais__stack"><li>React Native</li><li>Expo</li><li>Supabase</li><li>PostgreSQL</li><li>IA</li></ul>
+          <p class="mais__status">Feito para cliente — em produção</p>
+          <p class="mais__nota">A animação ilustra o fluxo: o aplicativo é de um cliente e as telas reais não são públicas.</p>
+        </div>
+      </article>
+
+      <article class="proj" data-slug="atlas" style="--cor: #818cf8; --i: 2">
+        <a class="proj__alvo" href="#projeto/atlas" data-projeto aria-label="Atlas — abrir o projeto">
+          <div class="proj__texto">
+            <p class="proj__topo"><span class="proj__num">03</span><span class="proj__status">Produto próprio, em desenvolvimento</span></p>
+            <p class="proj__dor"><span>O problema</span>Ficha de treino genérica não evolui com a pessoa.</p>
+            <h3 class="proj__nome">Atlas</h3>
+            <p class="proj__desc">Plataforma de treino onde um agente de IA monta o treino pelo catálogo — sem inventar exercício.</p>
+            <ul class="proj__stack"><li>Next.js</li><li>NestJS</li><li>TypeScript</li><li>Claude API</li></ul>
+            <span class="proj__abrir">Abrir o projeto<i class="seta seta--direita"></i></span>
+          </div>
+          <div class="proj__palco" data-demo="atlas"><img class="proj__reserva" src="assets/img/projetos/atlas.webp" alt="" width="1080" height="864" loading="lazy" decoding="async"></div>
+        </a>
+        <div class="proj__mais" hidden>
+          <p class="mais__problema">Ficha de treino genérica não evolui com a pessoa.</p>
+          <p class="mais__solucao">Estou construindo uma plataforma com catálogo de exercícios, treinos, progresso e conquistas, onde o agente de IA monta o treino consultando o catálogo do próprio sistema — em vez de inventar exercícios.</p>
+          <ol class="mais__passos"><li>Catálogo de exercícios, treinos, progresso e conquistas.</li><li>O agente de IA monta o treino consultando esse catálogo — nada de exercício inventado.</li><li>Front em Next.js e API em NestJS organizada por domínio, com contrato OpenAPI.</li><li>Testes e integração contínua desde o começo.</li></ol>
+          <ul class="mais__stack"><li>Next.js</li><li>NestJS</li><li>TypeScript</li><li>PostgreSQL</li><li>Redis</li><li>Claude API</li></ul>
+          <p class="mais__status">Produto próprio, em desenvolvimento</p>
+          <a class="mais__link" href="https://github.com/obragaa/Project-Atlas" target="_blank" rel="noopener">Ver o código no GitHub</a>
+        </div>
+      </article>
+
+      <article class="proj" data-slug="widgetok" style="--cor: #22d3ee; --i: 3">
+        <a class="proj__alvo" href="#projeto/widgetok" data-projeto aria-label="Widgetok — abrir o projeto">
+          <div class="proj__texto">
+            <p class="proj__topo"><span class="proj__num">04</span><span class="proj__status">Produto próprio</span></p>
+            <p class="proj__dor"><span>O problema</span>Quem transmite depende de serviço na nuvem para cada widget.</p>
+            <h3 class="proj__nome">Widgetok</h3>
+            <p class="proj__desc">Widgets de live rodando no computador de quem transmite — sem conta e sem nuvem.</p>
+            <ul class="proj__stack"><li>Node.js</li><li>Electron</li><li>Socket.IO</li></ul>
+            <span class="proj__abrir">Abrir o projeto<i class="seta seta--direita"></i></span>
+          </div>
+          <div class="proj__palco" data-demo="widgetok"><img class="proj__reserva" src="assets/img/projetos/widgetok.webp" alt="" width="1080" height="864" loading="lazy" decoding="async"></div>
+        </a>
+        <div class="proj__mais" hidden>
+          <p class="mais__problema">Quem transmite depende de serviço na nuvem para cada widget.</p>
+          <p class="mais__solucao">Construí alerta, ranking, meta, enquete e batalha rodando na máquina de quem transmite — sem conta, sem assinatura e sem mandar dado para fora.</p>
+          <ol class="mais__passos"><li>Alerta, ranking, meta, enquete e batalha num aplicativo só.</li><li>Tudo roda no computador de quem transmite.</li><li>Sem conta, sem assinatura e sem mandar dado para fora.</li></ol>
+          <ul class="mais__stack"><li>Node.js</li><li>Electron</li><li>Socket.IO</li><li>Express</li></ul>
+          <p class="mais__status">Produto próprio, para desktop</p>
+        </div>
+      </article>
+
+      <article class="proj" data-slug="palco" style="--cor: #f472b6; --i: 4">
+        <a class="proj__alvo" href="#projeto/palco" data-projeto aria-label="Palco — abrir o projeto">
+          <div class="proj__texto">
+            <p class="proj__topo"><span class="proj__num">05</span><span class="proj__status">Produto próprio</span></p>
+            <p class="proj__dor"><span>O problema</span>Live sem interação esvazia.</p>
+            <h3 class="proj__nome">Palco</h3>
+            <p class="proj__desc">Jogos por cima da live: o presente do público vira personagem na tela.</p>
+            <ul class="proj__stack"><li>Node.js</li><li>Electron</li><li>Canvas</li></ul>
+            <span class="proj__abrir">Abrir o projeto<i class="seta seta--direita"></i></span>
+          </div>
+          <div class="proj__palco" data-demo="palco"><img class="proj__reserva" src="assets/img/projetos/palco.webp" alt="" width="1080" height="864" loading="lazy" decoding="async"></div>
+        </a>
+        <div class="proj__mais" hidden>
+          <p class="mais__problema">Live sem interação esvazia.</p>
+          <p class="mais__solucao">Construí jogos que rodam por cima da transmissão: o presente do público vira personagem e disputa na tela, com a foto de quem mandou.</p>
+          <ol class="mais__passos"><li>Os jogos rodam por cima da transmissão.</li><li>Cada presente do público vira um personagem, com a foto de quem mandou.</li><li>Os personagens disputam na tela, ao vivo.</li></ol>
+          <ul class="mais__stack"><li>Node.js</li><li>Electron</li><li>Socket.IO</li><li>Canvas</li></ul>
+          <p class="mais__status">Produto próprio</p>
+        </div>
+      </article>
+
+      <article class="proj" data-slug="giftcraft" style="--cor: #a3e635; --i: 5">
+        <a class="proj__alvo" href="#projeto/giftcraft" data-projeto aria-label="GiftCraft — abrir o projeto">
+          <div class="proj__texto">
+            <p class="proj__topo"><span class="proj__num">06</span><span class="proj__status">Produto próprio</span></p>
+            <p class="proj__dor"><span>O problema</span>Na live de Minecraft, o público assiste, mas não joga junto.</p>
+            <h3 class="proj__nome">GiftCraft</h3>
+            <p class="proj__desc">O presente da live vira mob, efeito ou evento dentro do Minecraft.</p>
+            <ul class="proj__stack"><li>Node.js</li><li>Socket.IO</li><li>RCON</li></ul>
+            <span class="proj__abrir">Abrir o projeto<i class="seta seta--direita"></i></span>
+          </div>
+          <div class="proj__palco" data-demo="giftcraft"><img class="proj__reserva" src="assets/img/projetos/giftcraft.webp" alt="" width="1080" height="864" loading="lazy" decoding="async"></div>
+        </a>
+        <div class="proj__mais" hidden>
+          <p class="mais__problema">Na live de Minecraft, o público assiste, mas não joga junto.</p>
+          <p class="mais__solucao">Construí uma ponte entre a transmissão ao vivo e o Minecraft: o presente que o espectador envia vira mob, efeito ou evento dentro do servidor, em tempo real.</p>
+          <ol class="mais__passos"><li>Escuta os presentes da live em tempo real.</li><li>Cada presente tem uma ação configurada: mob, efeito ou evento.</li><li>A ação é executada no servidor do jogo pelo RCON.</li></ol>
+          <ul class="mais__stack"><li>Node.js</li><li>Socket.IO</li><li>RCON</li><li>Express</li></ul>
+          <p class="mais__status">Produto próprio</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= COMO TRABALHO ================= -->
+  <section class="metodo" id="como-trabalho" aria-labelledby="metodo-titulo">
+    <div class="cabeca">
+      <h2 class="titulo" id="metodo-titulo">Como trabalho</h2>
+      <p class="cabeca__nota">Do primeiro papo à entrega, sem surpresa no caminho.</p>
+    </div>
+
+    <ol class="passos">
+      <li data-revela="sobe">
+        <b>1</b>
+        <h3>Escopo por escrito</h3>
+        <p>Antes de escrever código, entendo o problema e combino o escopo por escrito.</p>
+      </li>
+      <li data-revela="sobe" style="--atraso:.08s">
+        <b>2</b>
+        <h3>IA onde ela ajuda</h3>
+        <p>Uso inteligência artificial onde ela realmente ajuda — e só onde ajuda.</p>
+      </li>
+      <li data-revela="sobe" style="--atraso:.16s">
+        <b>3</b>
+        <h3>Entrega que fica de pé</h3>
+        <p>Entrego testado, publicado e com uma documentação que você consegue ler.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ================= TRAJETÓRIA ================= -->
+  <section class="mundo" id="trajetoria" aria-labelledby="trajetoria-titulo">
+    <div class="mundo__fixo">
+      <div class="mundo__cena" aria-hidden="true"></div>
+      <h2 class="mundo__rotulo" id="trajetoria-titulo">Trajetória</h2>
+      <ol class="marcos">
+        <li class="marco">
+          <span class="lin"><b class="marco__ano">2019</b></span>
+          <span class="lin"><span class="marco__texto">Primeiras linhas de código</span></span>
+        </li>
+        <li class="marco">
+          <span class="lin"><b class="marco__ano">2020</b></span>
+          <span class="lin"><span class="marco__texto">Começo na área, ainda no curso técnico</span></span>
+        </li>
+        <li class="marco">
+          <span class="lin"><b class="marco__ano">2021</b></span>
+          <span class="lin"><span class="marco__texto">Anos na indústria: software para chão de fábrica, IoT, Indústria 4.0 e projetos do Rota 2030</span></span>
+        </li>
+        <li class="marco">
+          <span class="lin"><b class="marco__ano">Hoje</b></span>
+          <span class="lin"><span class="marco__texto">Sistemas sob medida para empresas e produtos próprios, com IA aplicada</span></span>
+        </li>
+      </ol>
+      <p class="mundo__contador" aria-hidden="true"><span>01</span> / 04</p>
+      <div class="mundo__barra" aria-hidden="true"><i></i></div>
+    </div>
+  </section>
+
+  <!-- ================= CONTATO ================= -->
+  <section class="contato" id="contato" aria-labelledby="contato-titulo">
+    <h2 class="gigante" id="contato-titulo" data-revela="palavras">Falar comigo</h2>
+    <p class="contato__nota">Conte em poucas linhas o processo que você quer resolver.</p>
+
+    <a class="contato__email" href="mailto:contato.felipebragaduarte@gmail.com?subject=Or%C3%A7amento%20de%20projeto">contato.felipebragaduarte<wbr>@gmail.com</a>
+
+    <div class="contato__acoes">
+      <button class="pilula pilula--clara" type="button" data-copiar="contato.felipebragaduarte@gmail.com">
+        <span class="rola"><span data-t="Copiar e-mail">Copiar e-mail</span></span><i class="ponto"></i>
+      </button>
+      <a class="pilula pilula--vidro" href="https://www.linkedin.com/in/felipe-braga101/" target="_blank" rel="noopener">
+        <span class="rola"><span data-t="LinkedIn">LinkedIn</span></span><i class="seta"></i>
+      </a>
+      <a class="pilula pilula--vidro" href="https://github.com/obragaa" target="_blank" rel="noopener">
+        <span class="rola"><span data-t="GitHub">GitHub</span></span><i class="seta"></i>
+      </a>
+    </div>
+    <p class="contato__aviso" role="status" aria-live="polite"></p>
+  </section>
+
+  <!-- ================= ARQUIVO ================= -->
+  <section class="arquivo" id="arquivo" aria-labelledby="arquivo-titulo">
+    <div class="cabeca cabeca--arquivo">
+      <h2 class="arquivo__titulo" id="arquivo-titulo">Arquivo</h2>
+      <p class="cabeca__nota">De onde vim e com o que trabalho: os testes de sensores de 2021, os estudos públicos e as ferramentas.</p>
+    </div>
+
+    <h3 class="arquivo__sub" id="hardware">Hardware — testes com Arduino, 2021</h3>
+    <ul class="sensores">
+      <li>
+        <a href="https://github.com/obragaa/SensorUltrassonico" target="_blank" rel="noopener">
+          <span class="sensores__leds" aria-hidden="true"><i></i><i></i><i></i></span>
+          <h4>Sensor ultrassônico</h4>
+          <p>Mede a distância com o HC-SR04 e acende até três LEDs conforme algo se aproxima — o mesmo da cena lá de cima.</p>
+          <span class="sensores__ir">Ver no GitHub<i class="seta"></i></span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/obragaa/SensorDeLuminosidade" target="_blank" rel="noopener">
+          <span class="sensores__leds" aria-hidden="true"><i></i></span>
+          <h4>Sensor de luz</h4>
+          <p>Com um LDR, acende o LED quando o ambiente escurece e apaga quando há luz.</p>
+          <span class="sensores__ir">Ver no GitHub<i class="seta"></i></span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/obragaa/SensorDeCor" target="_blank" rel="noopener">
+          <span class="sensores__leds sensores__leds--cor" aria-hidden="true"><i></i><i></i><i></i></span>
+          <h4>Sensor de cor</h4>
+          <p>O TCS3200 identifica a cor e mostra o resultado no monitor serial.</p>
+          <span class="sensores__ir">Ver no GitHub<i class="seta"></i></span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/obragaa/SensorRefletorTesteInicial" target="_blank" rel="noopener">
+          <span class="sensores__leds sensores__leds--barra" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <h4>Sensores de refletância</h4>
+          <p>Primeiros testes com os sensores QRE e com a barra QTR-8, da Pololu.</p>
+          <span class="sensores__ir">Ver no GitHub<i class="seta"></i></span>
+        </a>
+      </li>
+    </ul>
+
+    <h3 class="arquivo__sub">Mais no GitHub — estudos e ferramentas, 2022 a 2024</h3>
+    <ol class="repos">
+      <li><a href="https://github.com/obragaa/sonhos_lucidos" target="_blank" rel="noopener">
+        <span class="repos__ano">2024</span><span class="repos__nome">Sonhos Lúcidos</span>
+        <span class="repos__desc">Aplicação web com login para registrar, editar e excluir sonhos.</span>
+        <span class="repos__stack">Django</span><i class="seta"></i></a></li>
+      <li><a href="https://github.com/obragaa/FinancialMarketPredictor" target="_blank" rel="noopener">
+        <span class="repos__ano">2024</span><span class="repos__nome">FinancialMarketPredictor</span>
+        <span class="repos__desc">Previsão do mercado financeiro com aprendizado de máquina.</span>
+        <span class="repos__stack">scikit-learn, pandas</span><i class="seta"></i></a></li>
+      <li><a href="https://github.com/obragaa/PySpeakBot" target="_blank" rel="noopener">
+        <span class="repos__ano">2024</span><span class="repos__nome">PySpeakBot</span>
+        <span class="repos__desc">Chatbot com interface web e processamento de linguagem natural.</span>
+        <span class="repos__stack">Flask, NLTK, spaCy</span><i class="seta"></i></a></li>
+      <li><a href="https://github.com/obragaa/DynamicPriceTracker" target="_blank" rel="noopener">
+        <span class="repos__ano">2024</span><span class="repos__nome">DynamicPriceTracker</span>
+        <span class="repos__desc">Coleta preços de lojas virtuais com navegador automatizado.</span>
+        <span class="repos__stack">Selenium</span><i class="seta"></i></a></li>
+      <li><a href="https://github.com/obragaa/FinDataViz" target="_blank" rel="noopener">
+        <span class="repos__ano">2024</span><span class="repos__nome">FinDataViz</span>
+        <span class="repos__desc">Painel com cotações em tempo real pela API da Alpha Vantage.</span>
+        <span class="repos__stack">Django</span><i class="seta"></i></a></li>
+      <li><a href="https://github.com/obragaa/analise_sentimento" target="_blank" rel="noopener">
+        <span class="repos__ano">2024</span><span class="repos__nome">Análise de sentimentos</span>
+        <span class="repos__desc">Classifica frases como positivas, negativas ou neutras.</span>
+        <span class="repos__stack">Django, TextBlob</span><i class="seta"></i></a></li>
+      <li><a href="https://github.com/obragaa/StarGazer" target="_blank" rel="noopener">
+        <span class="repos__ano">2024</span><span class="repos__nome">StarGazer</span>
+        <span class="repos__desc">Relatório dos repositórios em alta de uma linguagem, pela API do GitHub.</span>
+        <span class="repos__stack">Python</span><i class="seta"></i></a></li>
+      <li><a href="https://github.com/obragaa/backup.api" target="_blank" rel="noopener">
+        <span class="repos__ano">2023</span><span class="repos__nome">backup.api</span>
+        <span class="repos__desc">Backup automático de dados de várias APIs.</span>
+        <span class="repos__stack">pandas</span><i class="seta"></i></a></li>
+      <li><a href="https://github.com/obragaa/Rename-bulk-files" target="_blank" rel="noopener">
+        <span class="repos__ano">2022</span><span class="repos__nome">Rename-bulk-files</span>
+        <span class="repos__desc">Renomeia e apaga arquivos em lote, com prévia e opção de desfazer.</span>
+        <span class="repos__stack">Python</span><i class="seta"></i></a></li>
+    </ol>
+
+    <h3 class="arquivo__sub">Ferramentas</h3>
+    <div class="grupos">
+      <div class="grupo">
+        <h4>Linguagens</h4>
+        <p>Python · TypeScript · JavaScript · Java · SQL · C++</p>
+      </div>
+      <div class="grupo">
+        <h4>Back-end e dados</h4>
+        <p>FastAPI · NestJS · Django · Node.js · PostgreSQL · Redis · Supabase</p>
+      </div>
+      <div class="grupo">
+        <h4>Front-end</h4>
+        <p>Next.js · React · React Native · Expo · HTML e CSS · Canvas</p>
+      </div>
+      <div class="grupo">
+        <h4>IA aplicada</h4>
+        <p>Claude API · busca vetorial (RAG) · agentes com ferramentas · avaliação automatizada · controle de custo</p>
+      </div>
+      <div class="grupo">
+        <h4>Infraestrutura e qualidade</h4>
+        <p>Docker · GitHub Actions · AWS · testes automatizados · revisão de segurança · observabilidade</p>
+      </div>
+      <div class="grupo">
+        <h4>Hardware</h4>
+        <p>Arduino · sensores · IoT · Indústria 4.0</p>
       </div>
     </div>
 
     <footer class="rodape">
-      <p>Felipe Braga Duarte · feito à mão, sem framework, hospedado no GitHub Pages</p>
+      <p>© 2026 Felipe Braga Duarte</p>
+      <a href="#topo">Voltar ao topo</a>
     </footer>
   </section>
 
 </main>
 
-<script type="module" src="assets/js/site.js"></script>
+<!-- Caso do projeto: abre a partir do próprio painel (rota #projeto/<nome>) -->
+<dialog class="caso" aria-labelledby="caso-nome">
+  <div class="caso__rolagem" data-lenis-prevent>
+    <div class="caso__barra">
+      <p class="caso__indice"><span>01</span> / 06</p>
+      <button class="pilula pilula--clara" type="button" data-fechar-caso>
+        <span class="rola"><span data-t="Fechar">Fechar</span></span><i class="xis"></i>
+      </button>
+    </div>
+    <header class="caso__cabeca">
+      <p class="caso__status"></p>
+      <h2 class="caso__nome" id="caso-nome"></h2>
+      <p class="caso__linha"></p>
+    </header>
+    <div class="caso__palco" aria-hidden="true"></div>
+    <p class="caso__nota" hidden></p>
+    <div class="caso__corpo">
+      <section><h3 class="caso__rot">O problema</h3><p class="caso__problema"></p></section>
+      <section><h3 class="caso__rot">O que construí</h3><p class="caso__solucao"></p></section>
+    </div>
+    <section class="caso__como">
+      <h3 class="caso__rot">Como funciona</h3>
+      <ol class="caso__passos"></ol>
+    </section>
+    <section class="caso__tec">
+      <div>
+        <h3 class="caso__rot">Feito com</h3>
+        <ul class="caso__stack"></ul>
+      </div>
+      <a class="pilula pilula--clara caso__link" href="#" target="_blank" rel="noopener" hidden>
+        <span class="rola"><span data-t="Ver o código no GitHub">Ver o código no GitHub</span></span><i class="seta"></i>
+      </a>
+    </section>
+    <button class="caso__proximo" type="button">
+      <span class="caso__rot">Próximo projeto</span>
+      <b class="caso__proximo-nome"></b>
+    </button>
+  </div>
+</dialog>
+
 </body>
 </html>

@@ -1,3 +1,9 @@
 .DS_Store
 Thumbs.db
 *.log
+
+# quadro do time (local: cita repositórios privados)
+.time/
+
+# dependências do gerador do bundle (só na máquina de quem desenvolve)
+ferramentas/gerar-three-enxuto/node_modules/
